@@ -27,7 +27,7 @@
 
 <script setup>
 import VueSlider from 'vue-3-slider-component'
-const props = defineProps(['video_id'])
+
 const timeout = useTimeout()
 const video = ref()
 const { $script } = useScriptVimeoPlayer()
@@ -36,6 +36,18 @@ const video_pos = ref(0)
 const video_max = ref(100)
 const video_max_str = ref('')
 const has_played = ref(false)
+
+const props = defineProps({
+  'video_id':{
+    type: String,
+  },
+  'status_events':{
+    type: Boolean,
+    default: false
+  }
+})
+const emit = defineEmits(['status-change'])
+console.log('props', props)
 
 const convertStoMs = (seconds) => {
       let minutes = Math.floor(seconds / 60);
@@ -69,7 +81,9 @@ onMounted(()=>{
     player.on('ended', () => {
         player.setCurrentTime(0)
         is_playing.value = false
-
+        if (props.status_events){
+          emit('status-change', false)
+        }
     })
   })
 })
@@ -84,11 +98,17 @@ const play_pause = async (event) => {
         timeout.nowPlaying()
         is_playing.value = true
         has_played.value = true
+        if (props.status_events){
+          emit('status-change', true)
+        }
     } else {
         player.pause()
         timeout.notPlaying()
         is_playing.value = false
         video_pos.value = await player.getCurrentTime()
+        if (props.status_events){
+          emit('status-change', false)
+        }
     }
 }
 </script>
