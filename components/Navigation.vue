@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-
+const dataStore = useDataStore()
 const {data} = await useKql({
   "query": "site.children.find('regions').children",
   "select": {
@@ -91,9 +91,16 @@ const navLink = (slug, index) => {
   console.log(slug)
   clearTimeout(highlight_timeout)
   cur_index.value = index
-  return navigateTo({
-    path: `/${index}/intro`,
-  })
+  if(!dataStore.hasWatchedIntro){
+    return navigateTo({
+      path: `/${index}/intro`,
+    })
+  } else {
+    return navigateTo({
+      path: `/${index}/local-intro`,
+    })
+  }
+  
 }
 
 const outlineClasses = computed(() => {
