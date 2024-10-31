@@ -11,6 +11,7 @@
 <script setup>
 const timeout_secs = 10
 const timeout = useTimeout()
+const data = useDataStore()
 const route = useRoute()
 const timer = ref(timeout_secs)
 
@@ -25,6 +26,7 @@ const tick = () => {
         setTimeout(tick, 1000)
     } else if (timeout.timedOut) {
         timeout.$patch({ timedOut: false })
+        data.$patch({hasWatchedIntro: false})
         timer.value = timeout_secs
         return navigateTo('/')
     }

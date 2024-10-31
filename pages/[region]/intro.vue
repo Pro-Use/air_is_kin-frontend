@@ -1,12 +1,17 @@
 <template>
     <div style="background-color: black;">
-        <VimeoPlayer v-if="video_id" :video_id="video_id"/>
+        <VimeoPlayer v-if="video_id" :video_id="video_id" @vid-ended="onEnded()"/>
     </div>
 </template>
 
 <script setup>
 
 const data = useDataStore()
+
+const onEnded = () => {
+    console.log("ended")
+    data.$patch({hasWatchedIntro: true})
+}
 
 const video_id = computed(()=>{
     if (data.introData.blocks.length){

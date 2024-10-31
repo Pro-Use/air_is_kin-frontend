@@ -46,7 +46,7 @@ const props = defineProps({
     default: false
   }
 })
-const emit = defineEmits(['status-change'])
+const emit = defineEmits(['status-change', 'vid-ended'])
 console.log('props', props)
 
 const convertStoMs = (seconds) => {
@@ -81,6 +81,7 @@ onMounted(()=>{
     player.on('ended', () => {
         player.setCurrentTime(0)
         is_playing.value = false
+        emit('vid-ended')
         if (props.status_events){
           emit('status-change', false)
         }
