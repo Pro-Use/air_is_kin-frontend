@@ -81,6 +81,7 @@ onMounted(()=>{
     player.on('ended', () => {
         player.setCurrentTime(0)
         is_playing.value = false
+        timeout.notPlaying()
         emit('vid-ended')
         if (props.status_events){
           emit('status-change', false)

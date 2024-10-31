@@ -7,12 +7,14 @@
 const props = defineProps(['hidden'])
 const visible = ref(true)
 const timeout = useTimeout()
+const data = useDataStore()
 const restart = () => {
     visible.value = false
     setTimeout(() => {
         visible.value = true
     }, 2000)
     timeout.stopTimer()
+    data.$patch({hasWatchedIntro: false})
     return navigateTo('/')
 }
 </script>
