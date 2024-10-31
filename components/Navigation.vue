@@ -14,9 +14,11 @@
             />
             <!-- <div class="outline-img" :style="{'mask-image': `url(${region.outline})` }"></div> -->
           </div>
-          <div v-if="onSplash" class="nav-text-wrapper">
-            <div class="nav-text">TAP A REGION TO BEGIN</div>
-          </div>
+          <Transition>
+            <div v-if="onSplash" class="nav-text-wrapper">
+              <div class="nav-text">TAP A REGION TO BEGIN</div>
+            </div>
+          </Transition>
       </div>
     </div>
     <NavTop :hidden="onSplash"/>
@@ -140,14 +142,18 @@ const outlineClasses = computed(() => {
 }
 
 .nav-text-wrapper {
-  width: 100vw;
-  height: 11.11%;
+  height: calc(100vw / 16);
   position: fixed;
-  left: 0;
-  bottom: 0;
+  left: -1px;
+  bottom: 1px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: calc((100vw / 16)* 6);
+  margin: 0 calc((100vw / 16)* 5);
+  background: white;
+  z-index: -1;
+  border: #808080 1px solid;
 }
 
 .nav-text {
@@ -224,6 +230,18 @@ const outlineClasses = computed(() => {
 
 .nav-outline-4 {
   top: 80%
+}
+
+.v-enter-active{
+  transition: opacity 0.5s ease 1s;
+}
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 
 </style>
