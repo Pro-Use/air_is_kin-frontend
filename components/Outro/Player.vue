@@ -98,7 +98,7 @@ const play_pause = () => {
 
 <style scoped>
 .beat-container {
-  margin: 2em 0px;
+  margin: 2em 0px 4em;
 }
 
 .beat-title {
@@ -109,6 +109,7 @@ const play_pause = () => {
   font-weight: 700;
   line-height: normal;
   margin-bottom: 1.75em;
+  text-transform: uppercase;
 }
 
 .player-container {
