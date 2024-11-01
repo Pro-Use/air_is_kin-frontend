@@ -71,7 +71,9 @@ onMounted(()=>{
       width: video.value.clientWidth,
       autoplay: false,
       byline: false,
-      controls: false
+      controls: false,
+      cc: true,
+      texttrack: 'en.captions'
     })
     video_max.value = await player.getDuration()
     video_max_str.value = convertStoMs(video_max.value)

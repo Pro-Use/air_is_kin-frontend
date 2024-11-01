@@ -33,7 +33,7 @@ export const useDataStore = defineStore('dataStore', () => {
                     "query": "site.children.find('regions').children",
                     "select": {
                         "slug": true,
-                        "title": "page.pagetitle",
+                        "title": "page.title",
                         "intro": {
                             "query": "page",
                             "select": {

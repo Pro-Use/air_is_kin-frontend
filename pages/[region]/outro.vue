@@ -1,8 +1,8 @@
 <template>
     <div>
-        <h1 class="outro-title">{{ data.outroData.title }}</h1>
+        
         <div class="left-col">
-            
+            <h1 class="title">{{ data.outroData.title }}</h1>
             <div v-for="(block, index) in data.outroData.left_blocks">
                 <OutroPlayer 
                     v-if="block.type == 'audio'"
@@ -20,9 +20,9 @@
                     v-html="block.content.text"
                     class="text-block"
                 ></div>
-                <div v-if="block.type == 'image'">
-                    <img class="outro-image" :srcset="block.content.resolved.image[0].srcset">
-                </div>
+                <!-- <div v-if="block.type == 'image'">
+                    <div class="headshot" :style="{'background-image': `url(${block.content.resolved.image[0].url})`}"></div>
+                </div> -->
             </div>
         </div>
         <div class="right-col">
@@ -60,13 +60,13 @@
 .outro-title {
     position: absolute;
     padding-left: calc(100% / 14);
-    padding-top: calc(100% / 7);
+    padding-top: calc(100% / 14);
     margin-top: -2em;
 }
 
 .left-col {
     height: 100%;
-    width: calc((100% / 14)* 9);
+    width: calc((100% / 14)* 10);
     padding: calc(100% / 7) calc(100% / 14);
     display: flex;
     flex-direction: column;
@@ -75,7 +75,7 @@
 
 .right-col {
     height: 100%;
-    width: calc((100% / 14)* 4);
+    width: calc((100% / 14)* 3);
     padding: calc(100% / 7) calc(100% / 14);
     padding-left: 0;
     display: flex;
@@ -84,8 +84,16 @@
     gap:2em
 }
 
+.headshot {
+  margin-top: 2em;
+  width: 12em;
+  aspect-ratio: 1/1;
+  background-size: cover;
+  border-radius: 100%;
+}
+
 .outro-heading {
-    font-weight: 700;
+    /* font-weight: 700; */
     text-transform: uppercase;
 }
 

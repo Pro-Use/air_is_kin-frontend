@@ -22,9 +22,9 @@ const fallback = 'url(https://www.newcastleworld.com/webimg/b25lY21zOjM4NTE2Y2U4
 
 const background = computed(()=>{
     if(props.index == props.cur_index  || props.cur_index == -1){
-        return 1
-    } else {
         return 0
+    } else {
+        return 1
     }
 })
 

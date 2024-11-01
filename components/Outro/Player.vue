@@ -1,6 +1,5 @@
 <template>
   <div class="beat-container">
-    <div class="beat-title">{{ props.title }}</div>
     <div class="player-container" ref="player_container">
       <div class="controls" @click="play_pause">
         <img v-if="!playing" src="~/assets/img/play-arrow.svg" />
@@ -13,6 +12,7 @@
         <span>/</span>
         <span class="min-sec">{{ player_dur }}</span>
       </div>
+      <div class="beat-title">{{ props.title }}</div>
     </div>
   </div>
 </template>
@@ -33,13 +33,13 @@ const player_time = ref('00.00')
 
 onMounted(() => {
   const container = `#${props.slug}-player`
-  const height = player_container.value.clientHeight
+  const height = player_container.value.clientHeight * 0.8
   // console.log('height', height)
   player = WaveSurfer.create({
     container: container,
     height: height,
     waveColor: 'rgba(217, 217, 217, 1)',
-    barWidth: height / 20,
+    barWidth: height / 60,
     barGap: 2,
     cursorWidth: 0,
     progressColor: 'grey',
@@ -98,17 +98,19 @@ const play_pause = () => {
 
 <style scoped>
 .beat-container {
-  margin: 2em 0px 4em;
+  margin: 2em 0px;
+  position: relative;
 }
 
 .beat-title {
   color: #5C5C5C;
   font-family: Inter;
-  font-size: 1.125em;
   font-style: normal;
-  font-weight: 700;
   line-height: normal;
-  margin-bottom: 1.75em;
+  margin-bottom: 1em;
+  position: absolute;
+  bottom: 0;
+  padding-left: 10em;
   text-transform: uppercase;
 }
 
@@ -116,16 +118,16 @@ const play_pause = () => {
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 3.7em;
+  height: 13em;
   border: black 1px solid;
-  border-radius: 3em;
+  border-radius: 10em;
   padding: 0.5em;
 }
 
 .controls {
-  width: 3.125em;
-  height: 3.125em;
-  margin-right: 1.5em;
+  width: 10em;
+  margin: 0 1.25em;
+  aspect-ratio: 1/1;
 }
 
 .controls>img {
@@ -145,8 +147,8 @@ const play_pause = () => {
 }
 
 .loader {
-  width: 100%;
-  height: 4.8px;
+  width: 80%;
+  height: 2px;
   display: inline-block;
   position: relative;
   background: rgba(217, 217, 217, 0.5);

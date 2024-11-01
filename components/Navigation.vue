@@ -23,6 +23,9 @@
     </div>
     <NavTop :hidden="onSplash"/>
     <NavBottom :hidden="onSplash"/>
+    <Transition>
+      <NavTitle v-if="!onSplash" :region="route.params?.region" :regions="data.result"/>
+    </Transition>
 </template>
 
 <script setup>

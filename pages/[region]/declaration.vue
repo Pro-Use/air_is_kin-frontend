@@ -87,7 +87,7 @@ const video_id = computed(()=>{
     width: fit-content;
     background: white;
     padding: 0.2em;
-    font-size: 3em;
+    font-size: 2em;
     margin-bottom: 1em;
 }
 
