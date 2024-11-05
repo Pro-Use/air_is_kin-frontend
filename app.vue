@@ -1,6 +1,7 @@
 <template>
+  <div :class="{'no-mouse': $config.public.NO_MOUSE}">
   <TimeOut/>
-  <div @click="interaction">
+  <div @click="interaction" >
     <!-- Colours -->
     <Grid>
       <GridColours/>
@@ -22,7 +23,7 @@
     <Navigation/>
     </Grid>
   </div>
-    
+</div>
 </template>
 
 <script setup>
@@ -30,6 +31,9 @@
 const store = useDataStore()
 const timeout = useTimeout()
 const route = useRoute()
+const config =  useRuntimeConfig()
+
+console.log('config', config.public)
 
 const interaction = () =>{
   console.log('tap')
@@ -69,5 +73,10 @@ provide('region_data', region_data)
     pointer-events: all;
     display: flex;
     position: relative;
+}
+
+.no-mouse {
+  cursor: none;
+  user-select: none;
 }
 </style>

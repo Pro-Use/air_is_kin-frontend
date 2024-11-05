@@ -9,6 +9,11 @@ export default defineNuxtConfig({
       mode: 'out-in'
     }
   },
+  runtimeConfig: {
+    public: {
+      NO_MOUSE: process.env.NO_MOUSE == 'true'
+    }
+  },
   css: ['~/assets/main.css'],   
   devtools: { enabled: false },
   debug: true,
